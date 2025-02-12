@@ -289,22 +289,26 @@ function autoLogin() {
 
                 // 封面图片选择
                 console.log("正在自动选择封面图片...");
-                await page.hover('#js_cover_area > div.select-cover__btn.js_cover_btn_area');
-                await page.waitFor(500);
-                await page.click('.js_aiImage');
+                await page.evaluate(() => {
+                    document.querySelector('.js_aiImage').click();
+                });
+                // await page.hover('#js_cover_area > div.select-cover__btn.js_cover_btn_area');
+                // await page.click('.js_aiImage');
                 await page.waitFor(500);
                 // 使输入框获得焦点
                 await page.focus('.chat_textarea');
                 await page.waitFor(500);
                 await page.keyboard.type(String(prompt));
                 await page.click('.weui-desktop-btn_primary');
-                await page.waitFor(10000);
+                await page.waitFor(60000);
                 // 选择默认图片
-                await page.click('.chat-ai-list > .chat-ai-item:last-child .ai-image-item .ai-image-finetuning-btn:last-child');
-                await page.waitFor(500);
+                await page.evaluate(() => {
+                    document.querySelector('.chat-ai-list > .chat-ai-item:last-child .ai-image-item .ai-image-finetuning-btn:last-child').click();
+                });
+                await page.waitFor(2000);
                 await page.click('.weui-desktop-btn_primary');
                 // 下一步
-                await page.waitFor(1200);
+                await page.waitFor(2000);
             }
 
             if (original) {
@@ -313,9 +317,7 @@ function autoLogin() {
                 await page.evaluate(() => {
                     document.querySelector('#js_original .js_unset_original_title').click();
                 });
-                await page.focus('.js_customerauthor_container input');
-                await page.keyboard.type(author);
-                await page.waitFor(50);
+                await page.waitFor(500);
                 await page.click('.weui-desktop-icon-checkbox');
                 await page.waitFor(500);
                 await page.click('.weui-desktop-btn_primary');
@@ -407,7 +409,7 @@ function autoLogin() {
             });
             console.log("发生异常，详情请见 ErrorResult.png");
             // 结束
-            browser.close();
+            // browser.close();
             return reject(e);
         }
     })
