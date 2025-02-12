@@ -310,20 +310,15 @@ function autoLogin() {
             if (original) {
                 // 声明原创
                 console.log("正在声明原创...");
-
                 await page.evaluate(() => {
-                    document.querySelector('#js_original > div.unorigin.js_original_type > div.setting-group__content > a').click();
+                    document.querySelector('#js_original .js_unset_original_title').click();
                 });
-                await page.waitForSelector("label[for='js_copyright_agree'");
-                await page.click('body > div.dialog_wrp.simple.align_edge.original_dialog.ui-draggable > div > div.dialog_bd > div.step_panel.step_agreement.js_step_panel > div > div > div > div.tool_area.new-tool_area > label > i');
-                await page.click('body > div.dialog_wrp.simple.align_edge.original_dialog.ui-draggable > div > div.dialog_ft > span:nth-child(1) > button');
+                await page.focus('.js_customerauthor_container input');
+                await page.keyboard.type(author);
                 await page.waitFor(50);
-                await page.click('#js_original_article_type > div > a');
-                await page.waitFor(50);
-                await page.click('#js_original_article_type > div > div > div > div.weui-desktop-dropdown__list__cascade__container.js_scroll_area.js_data > dl > dd > dl:nth-child(2) > dt');
-                await page.waitFor(50);
-                await page.click('body > div.dialog_wrp.simple.align_edge.original_dialog.ui-draggable > div > div.dialog_ft > span:nth-child(3) > button');
+                await page.click('.weui-desktop-icon-checkbox');
                 await page.waitFor(500);
+                await page.click('.weui-desktop-btn_primary');
             } else {
                 await page.waitFor(500);
             }
