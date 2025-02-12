@@ -39,6 +39,7 @@ Options:
   -u, --username [xxx]          公众号账号
   -p, --password [xxx]          公众号密码
   -o, --original                声明原创[可选]
+  -pr, --prompt [xxx]           AI 文章配图prompt
   --preview                     预览而不发布[可选]
   --preview_username [xxx~yyy]  预览名单[可选]，以~间隔多个微信号（自行保证微信号已关注公众号）
   --skip_typing                 跳过文章标题、作者、文章的填写和封面图片选择（声明原创除外）[可选]
